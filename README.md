@@ -10,8 +10,8 @@ In this repository you will see two folders:
   2) Homework_1_ch17
 
 What's inside the folders!
-In the first folder 'ch17' you will have five files: Section_17_2_exercise. PDF, PY, and IPYNB + 2 files: book. DB and SQL used in the program
 -
+In the first folder 'ch17' you will have five files: Section_17_2_exercise. PDF, PY, and IPYNB + 2 files: book. DB and SQL used in the program
 While in the second folder 'Homework_1_ch17' you will have five files as well: Homework_1_ch17. PDF, PY, and IPYNB + 2 files: book. DB and SQL used in the program (the same used in folder 'ch17')
 
 -- END OF README NOTE -- 
