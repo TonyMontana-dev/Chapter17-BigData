@@ -28,7 +28,7 @@ import sqlite3
 connection = sqlite3.connect('books.db')
 
 
-# In[34]:
+# In[71]:
 
 
 # pd.options.display.max_columns = 10
@@ -36,7 +36,7 @@ connection = sqlite3.connect('books.db')
 pd.read_sql('SELECT last FROM authors ORDER BY last DESC', connection)
 
 
-# In[35]:
+# In[70]:
 
 
 # Select all book titles from titles table in ascending order (b.)
@@ -59,21 +59,21 @@ pd.read_sql("""SELECT titles.title, titles.copyright, author_ISBN.isbn FROM titl
 cursor = connection.cursor()
 
 
-# In[37]:
+# In[72]:
 
 
 # Now we can insert a new author inside the authors table
 cursor = cursor.execute("""INSERT INTO authors (first, last) VALUES ('Master', 'OTW')""")
 
 
-# In[51]:
+# In[73]:
 
 
 # Let's check quickly if it worked
 pd.read_sql('SELECT id, first, last FROM authors', connection, index_col=['id'])
 
 
-# In[52]:
+# In[74]:
 
 
 # Nice, it worked! Now let's continue with the last step
@@ -83,29 +83,38 @@ pd.read_sql('SELECT id, first, last FROM authors', connection, index_col=['id'])
 cursor = cursor.execute("""INSERT INTO titles (isbn, title, edition, copyright) VALUES ('1711729299', 'Getting Started Becoming a Master Hacker', 1, 2019)""")
 
 
-# In[55]:
+# In[77]:
 
 
 # Once create the content for the titles table we will add the content for the author_ISBN table.
 # After we will have all three tables updated with the new author first and last name as well as his/her book information
-cursor = cursor.execute("""INSERT INTO author_ISBN (id, isbn) VALUES (6, "1711729299")""")
+cursor = cursor.execute("""INSERT INTO author_ISBN (id, isbn) VALUES (9, "1711729299")""")
 
 
-# In[57]:
+# In[78]:
 
 
 # Let's check quickly if it worked
 pd.read_sql("""SELECT titles.title, titles.copyright, author_ISBN.isbn FROM titles INNER JOIN author_ISBN ON titles.isbn = author_ISBN.isbn INNER JOIN authors ON author_ISBN.id = authors.id WHERE authors.first = 'Master'""", connection)
 
 
-# In[58]:
+# In[79]:
+
+
+# Once we finished with our program we can close the connection with our database!
+connection.close()
+
+
+# In[ ]:
 
 
 """
 Great it worked!
 
 If there is need to delete something, using this expression might help
-- cursor = cursor.execute('DELETE FROM titles WHERE isbn=1711729299') - Change the arguments with your needs
+cursor = cursor.execute('DELETE FROM authors WHERE id=9')
+cursor = cursor.execute('DELETE FROM titles WHERE isbn=1711729299')
+cursor = cursor.execute('DELETE FROM author_ISBN WHERE isbn=1711729299')
 
 Thank you for practicing with me using Big Data, see you soon!
 """
